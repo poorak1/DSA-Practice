@@ -17,7 +17,7 @@ public:
         int lh = helper(r->left, balanced);
         int rh = helper(r->right, balanced);
 
-        if((max(lh, rh) - min(lh, rh)) > 1) balanced = false;
+        if(abs(lh-rh) > 1) balanced = false;
 
         return 1 + max(lh, rh); 
     }
