@@ -1,2 +1,2 @@
-# Cpp-Problems
-In this Repository, I wll be solving Problems from leetcode in C++ Language
+# DSA-Problems
+In this Repository, I will be solving problems related to data structures and algorithms
