@@ -30,8 +30,6 @@ public:
         for(auto &it : mpp){
             vector<int> tmp;
             for (int i = 0; i < it.second.size(); i++) {
-                // cout<<i;
-                // cout<<it.second[i];
                 tmp.push_back(it.second[i]); 
             }
             final.push_back(tmp);
