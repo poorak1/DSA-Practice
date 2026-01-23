@@ -19,7 +19,7 @@ public:
         int inpos = inmap[postorder[postend]];
         int numsleft = inpos - instart;
 
-        root->left = helper(postorder, poststart, poststart+numsleft-1, inorder, instart, instart+numsleft, inmap);
+        root->left = helper(postorder, poststart, poststart+numsleft-1, inorder, instart, instart+numsleft-1, inmap);
         root->right = helper(postorder, poststart+numsleft, postend-1, inorder, inpos+1, inend, inmap);
 
         return root;
