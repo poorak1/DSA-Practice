@@ -18,16 +18,15 @@ public:
 
 class Solution {
 public:
-    void helper(Node* r, map<int, vector<Node*>> &mpp, int level){
+    void helper(Node* r, map<int, Node*> &mpp, int level){
         if(r==nullptr) return;
 
         if(mpp.find(level) == mpp.end()){
-            mpp[level].push_back(r);
+            mpp[level] = r;
             r->next=nullptr;
         }else{
-            int last_idx = mpp[level].size()-1;
-            mpp[level][last_idx]->next = r;
-            mpp[level].push_back(r);
+            mpp[level]->next = r;
+            mpp[level] = r;
             r->next = nullptr;
         }
 
@@ -36,7 +35,7 @@ public:
     }
 
     Node* connect(Node* root) {
-        map<int, vector<Node*>> mpp;
+        map<int, Node*> mpp;
 
         helper(root, mpp, 0);
 
