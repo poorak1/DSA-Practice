@@ -12,36 +12,34 @@
 class Solution {
 public:
 
-    struct Node {
-        int mn, mx, sum;
-        bool isBST;
-    };
+    pair<int,int> helper(TreeNode* r, int &sum, int &currSum){
 
-    Node helper(TreeNode* r, int &ans){
-        if(r == nullptr) return {INT_MAX, INT_MIN, 0, true};
+        if(r == nullptr) return {INT_MAX, INT_MIN};
 
-        auto l = helper(r->left, ans);
-        auto rr = helper(r->right, ans);
+        int leftSum = 0, rightSum = 0;
 
-        if(l.isBST && rr.isBST && r->val > l.mx && r->val < rr.mn){
+        auto l = helper(r->left, sum, leftSum);
+        auto rr = helper(r->right, sum, rightSum);
 
-            int currSum = l.sum + rr.sum + r->val;
-            ans = max(ans, currSum);
+        if(r->val > l.second && r->val < rr.first){
+
+            currSum = leftSum + rightSum + r->val;
+            sum = max(sum, currSum);
 
             return {
-                min(r->val, l.mn),
-                max(r->val, rr.mx),
-                currSum,
-                true
+                min(r->val, l.first),
+                max(r->val, rr.second)
             };
         }
 
-        return {INT_MIN, INT_MAX, 0, false};
+        currSum = 0;
+        return {INT_MIN, INT_MAX};
     }
 
     int maxSumBST(TreeNode* root) {
-        int ans = 0;
-        helper(root, ans);
-        return ans;
+        int sum = 0;
+        int temp = 0;
+        helper(root, sum, temp);
+        return sum;
     }
 };
