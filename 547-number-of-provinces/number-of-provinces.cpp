@@ -4,7 +4,7 @@ public:
         vis[node] = 1;
 
         for(int j = 0; j < isConnected.size(); j++){
-            if(isConnected[node][j] == 1 && !vis[j]){
+            if(isConnected[node][j] == 1 && !vis[j] && (node!=j)){
                 dfs(j, isConnected, vis);
             }
         }
