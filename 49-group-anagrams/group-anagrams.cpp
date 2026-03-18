@@ -2,17 +2,28 @@ class Solution {
 public:
     vector<vector<string>> groupAnagrams(vector<string>& strs) {
         unordered_map<string, vector<string>> mpp;
-        vector<vector<string>> final;
-        for(string str: strs){
-            string sorted_parent = str;
-            sort(sorted_parent.begin(), sorted_parent.end());
-            mpp[sorted_parent].push_back(str);
+
+        for(const string &str : strs){
+            vector<int> freq(26, 0);
+
+            for(char c : str){
+                freq[c - 'a']++;
+            }
+
+            string key = "";
+            for(int count : freq){
+                key += "#" + to_string(count);
+            }
+            cout<<key<<"\n";
+
+            mpp[key].push_back(str);
         }
 
-        for(auto &pair: mpp){
-            final.push_back(pair.second);
+        vector<vector<string>> result;
+        for(auto &p : mpp){
+            result.push_back(p.second);
         }
 
-        return final;
+        return result;
     }
 };
