@@ -14,7 +14,6 @@ public:
             for(int count : freq){
                 key += "#" + to_string(count);
             }
-            cout<<key<<"\n";
 
             mpp[key].push_back(str);
         }
