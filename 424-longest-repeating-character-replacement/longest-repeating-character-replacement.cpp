@@ -1,12 +1,5 @@
 class Solution {
 public:
-    // int max_repeating_char(unordered_map<char, int> &mpp){
-    //     int max_freq=0;
-    //     for(auto &pair: mpp){
-    //         max_freq = max(max_freq, pair.second);
-    //     }
-    //     return max_freq;
-    // }
     int characterReplacement(string s, int k) {
         vector<int> mpp(26, 0);
 
