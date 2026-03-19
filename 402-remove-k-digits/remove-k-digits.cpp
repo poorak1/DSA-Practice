@@ -5,15 +5,11 @@ public:
         stack<char> st;
 
         for(char &c: num){
-            if(st.empty() || (st.top() <= c) || k == 0){
-                st.push(c);
-            }else{
-                while(!st.empty() && (st.top() > c) && k>0){
-                    st.pop();
-                    k--;
-                }
-                st.push(c);
+            while(!st.empty() && (st.top() > c) && k>0){
+                st.pop();
+                k--;
             }
+            st.push(c);
         }
 
         while(k > 0){
