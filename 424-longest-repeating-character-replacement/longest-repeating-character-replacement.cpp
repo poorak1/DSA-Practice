@@ -8,7 +8,7 @@ public:
     //     return max_freq;
     // }
     int characterReplacement(string s, int k) {
-        unordered_map<char, int> mpp;
+        vector<int> mpp(26, 0);
 
         int result = 0;
         int ptr1 = 0;
@@ -16,10 +16,10 @@ public:
         int max_freq = 0; 
 
         while(ptr2<s.size()){
-            mpp[s[ptr2]]++;
-            max_freq = max(max_freq, mpp[s[ptr2]]);
+            mpp[s[ptr2]-'A']++;
+            max_freq = max(max_freq, mpp[s[ptr2]-'A']);
             if((ptr2-ptr1+1) - max_freq> k){
-                mpp[s[ptr1]]--;
+                mpp[s[ptr1]-'A']--;
                 ptr1++;
             }else{
                 result = max(result, ptr2-ptr1+1);
