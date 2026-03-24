@@ -2,42 +2,37 @@ class Solution {
 public:
     string minWindow(string s, string t) {
         if(t.size() > s.size()) return "";
-        
-        unordered_map<char, int> mpp;
-        unordered_map<char, int> window; 
 
-        for(char &c : t){
-            mpp[c]++;
-        }
+        vector<int> freq(128, 0);
 
-        int have = 0;
-        int need = mpp.size();
-        int res = INT_MAX;
+        // build freq map
+        for(char c : t) freq[c]++;
+
+        int required = t.size();  // total chars needed
+        int ptr1 = 0;
+        int min_len = INT_MAX;
         int start = 0;
-        
-        int ptr1 = 0, ptr2 = 0;
 
-        while(ptr2 < s.size() &&  (ptr1 <= ptr2)){
-            window[s[ptr2]]++;
+        for(int ptr2 = 0; ptr2 < s.size(); ptr2++){
+            if(freq[s[ptr2]] > 0) required--;
 
-            if(mpp[s[ptr2]] == window[s[ptr2]]) have++;
+            freq[s[ptr2]]--;
 
-            while(have == need){
-                if(ptr2-ptr1+1 < res){
-                    res = ptr2-ptr1+1;
+            // valid window
+            while(required == 0){
+                if(ptr2 - ptr1 + 1 < min_len){
+                    min_len = ptr2 - ptr1 + 1;
                     start = ptr1;
                 }
 
-                window[s[ptr1]]--;
+                freq[s[ptr1]]++;
 
-                if(mpp.find(s[ptr1]) != mpp.end() && window[s[ptr1]] < mpp[s[ptr1]]){
-                    have--;
-                }
+                if(freq[s[ptr1]] > 0) required++;
+
                 ptr1++;
             }
-            ptr2++;
         }
-        
-        return res == INT_MAX? "": s.substr(start, res);
+
+        return min_len == INT_MAX ? "" : s.substr(start, min_len);
     }
 };
