@@ -5,10 +5,9 @@ public:
 
         vector<int> freq(128, 0);
 
-        // build freq map
         for(char c : t) freq[c]++;
 
-        int required = t.size();  // total chars needed
+        int required = t.size();  
         int ptr1 = 0;
         int min_len = INT_MAX;
         int start = 0;
@@ -18,7 +17,6 @@ public:
 
             freq[s[ptr2]]--;
 
-            // valid window
             while(required == 0){
                 if(ptr2 - ptr1 + 1 < min_len){
                     min_len = ptr2 - ptr1 + 1;
