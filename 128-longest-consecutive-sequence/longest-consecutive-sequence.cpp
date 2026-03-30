@@ -4,7 +4,7 @@ public:
         unordered_set<int> st(nums.begin(), nums.end());
         int final = 0;
 
-        for(int num: st){
+        for(const int &num: st){
             if(st.find(num-1) == st.end()){
                 int tmp = num;
                 int curr_length = 1;
