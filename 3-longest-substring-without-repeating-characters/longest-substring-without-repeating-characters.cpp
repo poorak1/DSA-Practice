@@ -11,7 +11,7 @@ public:
             if(mpp.find(s[ptr_two]) == mpp.end()){
                 mpp[s[ptr_two]] = ptr_two;
             }else{
-                ptr_one = max(ptr_one, mpp[s[ptr_two]] + 1);
+                ptr_one = max(ptr_one, mpp[s[ptr_two]] + 1); // max is taken because the previous occurance might be outside current window
                 mpp[s[ptr_two]] = ptr_two;
             }
             max_len = max(max_len, ptr_two-ptr_one+1);
