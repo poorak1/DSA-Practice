@@ -17,7 +17,7 @@ public:
 
         return true;
     }
-
+    // similar to koko eating bananas, here lower bound is the maximum of weights while upper bound is the sum of the weights. Now we'll search in the upper bound and the lower bound
     int shipWithinDays(vector<int>& weights, int days) {
         int low = *max_element(weights.begin(), weights.end());
         int high = accumulate(weights.begin(), weights.end(), 0);
